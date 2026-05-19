@@ -94,9 +94,13 @@ export default function Lightbox({
         onClick={onClose}
       >
         <PhotoImage
+          key={photo.id}
           src={photo.src}
           alt={photo.title || 'Photo'}
-          className="max-h-[80vh] max-w-[85vw] object-contain"
+          loading="eager"
+          loaderVariant="dark"
+          wrapperClassName="flex min-h-[50vh] w-full max-w-[85vw] items-center justify-center"
+          className="relative z-10 max-h-[80vh] max-w-full object-contain"
           onClick={(e) => e.stopPropagation()}
         />
 

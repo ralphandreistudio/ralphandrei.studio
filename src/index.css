@@ -11,3 +11,24 @@
     @apply bg-white font-sans font-normal text-brand-black antialiased;
   }
 }
+
+@layer components {
+  .photo-loader {
+    @apply bg-brand-light;
+    animation: photo-loader-pulse 1.4s ease-in-out infinite;
+  }
+
+  .photo-loader--dark {
+    @apply bg-white/10;
+  }
+
+  @keyframes photo-loader-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+}
