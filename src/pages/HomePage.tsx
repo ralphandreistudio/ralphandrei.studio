@@ -197,15 +197,6 @@ export default function HomePage() {
             </li>
             <li>
               <a
-                href="mailto:r.andreitomas@gmail.com"
-                className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
-              >
-                <EmailIcon />
-                email
-              </a>
-            </li>
-            <li>
-              <a
                 href="https://www.facebook.com/studio.randreit"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -213,6 +204,15 @@ export default function HomePage() {
               >
                 <FacebookIcon />
                 facebook
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:r.andreitomas@gmail.com"
+                className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
+              >
+                <EmailIcon />
+                r.andreitomas@gmail.com
               </a>
             </li>
             <li>
