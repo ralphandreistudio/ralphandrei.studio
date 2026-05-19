@@ -553,6 +553,36 @@ export const galleryBySlug: Record<string, Photo[]> = {
       "id": "kids-18",
       "src": "/photos/kids/18.jpg",
       "title": ""
+    },
+    {
+      "id": "kids-19",
+      "src": "/photos/kids/19.jpg",
+      "title": ""
+    },
+    {
+      "id": "kids-20",
+      "src": "/photos/kids/20.jpg",
+      "title": ""
+    },
+    {
+      "id": "kids-21",
+      "src": "/photos/kids/21.jpg",
+      "title": ""
+    },
+    {
+      "id": "kids-22",
+      "src": "/photos/kids/22.jpg",
+      "title": ""
+    },
+    {
+      "id": "kids-23",
+      "src": "/photos/kids/23.jpg",
+      "title": ""
+    },
+    {
+      "id": "kids-24",
+      "src": "/photos/kids/24.jpg",
+      "title": ""
     }
   ],
   "portraits": [
