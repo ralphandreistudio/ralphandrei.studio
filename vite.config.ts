@@ -1,4 +1,4 @@
-import { defineConfig, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { syncGallery } from './scripts/sync-gallery.mjs' // types: scripts/sync-gallery.d.ts
@@ -44,7 +44,22 @@ function gallerySyncPlugin(): Plugin {
   }
 }
 
+function siteUrlPlugin(siteUrl: string): Plugin {
+  return {
+    name: 'site-url-meta',
+    transformIndexHtml(html) {
+      return html.replaceAll('%SITE_URL%', siteUrl.replace(/\/$/, ''))
+    },
+  }
+}
+
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [gallerySyncPlugin(), react()],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const siteUrl =
+    env.VITE_SITE_URL || 'https://studio-ralph-andrei.vercel.app'
+
+  return {
+    plugins: [siteUrlPlugin(siteUrl), gallerySyncPlugin(), react()],
+  }
 })
