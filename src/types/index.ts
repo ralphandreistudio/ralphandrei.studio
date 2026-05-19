@@ -1,3 +1,9 @@
+/** Listed by gallery sync — captions come from captions.json */
+export interface GalleryEntry {
+  id: string
+  src: string
+}
+
 export interface Photo {
   id: string
   src: string

@@ -42,7 +42,7 @@ export default function CategoryPage() {
             photos coming soon
           </p>
         ) : (
-          <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 items-center gap-1 md:grid-cols-2 lg:grid-cols-3">
             {photos.map((photo, index) => (
               <button
                 key={photo.id}
@@ -53,8 +53,7 @@ export default function CategoryPage() {
                 <PhotoImage
                   src={photo.src}
                   alt={photo.title || 'Photo'}
-                  wrapperClassName="min-h-[200px] w-full md:min-h-[260px]"
-                  skeletonClassName="min-h-[200px] md:min-h-[260px]"
+                  wrapperClassName="w-full"
                   className="block w-full transition-transform duration-200 group-hover:scale-[1.01]"
                 />
                 <div className="absolute inset-0 flex items-end bg-black/0 p-4 transition-colors duration-200 group-hover:bg-black/30">

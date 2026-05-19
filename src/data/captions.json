@@ -1,0 +1,47 @@
+{
+  "bts": {
+    "01.jpg": { "title": "Vogue Threads Manila 2025" },
+    "10.jpg": { "title": "World of Wonders Magic Show" },
+    "13.JPG": { "title": "Summit Media BTS Shoot for Hero Editor" },
+    "16.jpg": { "title": "Straight by Little Boy Productions" }
+  },
+  "celebrations": {
+    "01.JPG": { "title": "Jaq's Funky at 50" },
+    "07.JPG": { "title": "Natazia's Pickleball Tourney Birthday" },
+    "10.jpg": { "title": "Hannah's 60th" },
+    "13.jpg": { "title": "Dharica Debut" },
+    "16.jpg": { "title": "Ira & JM Wedding" }
+  },
+  "dance": {
+    "01.JPG": { "title": "Defiance Dance Competition III" }
+  },
+  "events": {
+    "01.JPG": { "title": "Magnolia @100 Shoot for Hero Editor" },
+    "04.jpg": { "title": "Myra Shoot for Hero Editor" },
+    "07.jpg": { "title": "TDG @50 Shoot for Hero Editor" },
+    "10.jpg": { "title": "TDG Thanksgiving Shoot for Hero Editor" },
+    "13.JPG": { "title": "Vice Cosmetics Shoot for Hero Editor" },
+    "16.jpg": { "title": "DOH Pageant Shoot for Hero Editor" }
+  },
+  "graduations": {
+    "01.JPG": { "title": "ASOG MPA Graduation Shoot for Hero Editor" },
+    "10.JPG": { "title": "FEU Tech Commencement Exercises" }
+  },
+  "kids": {
+    "01.JPG": { "title": "Jada Winter" },
+    "04.jpg": { "title": "Ciara" },
+    "10.jpg": { "title": "Francis" },
+    "13.jpg": { "title": "Ashira" },
+    "16.jpg": { "title": "Ji-Eun" },
+    "19.jpg": { "title": "Isaac" }
+  },
+  "portraits": {
+    "01.jpg": { "title": "Xyriel" },
+    "04.JPG": { "title": "Alwina" },
+    "07.jpg": { "title": "Daniel" },
+    "10.JPG": { "title": "Lana" },
+    "13.jpg": { "title": "DOH Pageant" }
+  },
+  "real-estate": {},
+  "sports": {}
+}

@@ -29,12 +29,14 @@ export default function PhotoImage({
   const candidates = useMemo(() => getImageSrcCandidates(src), [src])
   const [index, setIndex] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  const [failed, setFailed] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
   const resolvedSrc = candidates[index]
 
   useEffect(() => {
     setIndex(0)
     setLoaded(false)
+    setFailed(false)
   }, [src])
 
   useEffect(() => {
@@ -44,13 +46,15 @@ export default function PhotoImage({
     }
   }, [resolvedSrc, index])
 
-  if (!resolvedSrc) return null
+  if (!resolvedSrc || failed) return null
 
   const loaderClass =
     loaderVariant === 'dark' ? 'photo-loader photo-loader--dark' : 'photo-loader'
 
   return (
-    <div className={`relative ${wrapperClassName}`}>
+    <div
+      className={`relative w-full ${!loaded ? 'min-h-24' : ''} ${wrapperClassName}`}
+    >
       {!loaded && (
         <div
           className={`${loaderClass} absolute inset-0 ${skeletonClassName}`}
@@ -73,6 +77,7 @@ export default function PhotoImage({
             setIndex((i) => i + 1)
             setLoaded(false)
           } else {
+            setFailed(true)
             onAllFailed?.()
           }
         }}

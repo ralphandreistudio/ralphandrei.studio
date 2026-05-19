@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "sync-gallery": "node scripts/sync-gallery.mjs",
+    "import-captions": "node scripts/sync-gallery.mjs --import=",
     "dev": "vite",
     "build": "npm run sync-gallery && tsc -b && vite build",
     "lint": "eslint .",

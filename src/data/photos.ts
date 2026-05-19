@@ -4,11 +4,9 @@ import { applyPhotoMeta } from './photo-meta'
 
 // ─────────────────────────────────────────────────────────────
 // PHOTO MANAGEMENT
-// Cover: drop cover.jpg (any case) in /public/photos/<slug>/
-// Gallery: drop numbered images (01.jpg, 02.JPG, …) in the same folder.
-//   Files are picked up automatically — no manual list needed.
-//   Excludes cover.* — order follows filename (01, 02, … 10).
-// Optional titles: edit src/data/photo-meta.ts
+// Cover: drop cover.jpg in /public/photos/<slug>/
+// Gallery: drop images (01.jpg, 02.JPG, …) in the same folder (auto-listed).
+// Captions/titles: edit src/data/captions.json (safe — never auto-deleted)
 // ─────────────────────────────────────────────────────────────
 
 const categoryDefs = [
@@ -79,7 +77,13 @@ const categoryDefs = [
 
 export const categories: Category[] = categoryDefs.map((def) => ({
   ...def,
-  photos: applyPhotoMeta(def.slug, galleryBySlug[def.slug] ?? []),
+  photos: applyPhotoMeta(
+    def.slug,
+    (galleryBySlug[def.slug] ?? []).map((entry) => ({
+      ...entry,
+      title: '',
+    })),
+  ),
 }))
 
 export function getCategoryBySlug(slug: string): Category | undefined {
