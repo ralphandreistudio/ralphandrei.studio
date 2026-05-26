@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getCoverSrcCandidates } from '../utils/imagePaths'
+import { useNearViewport } from '../hooks/useNearViewport'
 
 interface CategoryCoverImageProps {
   slug: string
@@ -14,10 +15,10 @@ export default function CategoryCoverImage({
   className = '',
   onAllFailed,
 }: CategoryCoverImageProps) {
+  const { ref, near } = useNearViewport('400px')
   const candidates = useMemo(() => getCoverSrcCandidates(slug), [slug])
   const [index, setIndex] = useState(0)
   const [loaded, setLoaded] = useState(false)
-  const imgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     setIndex(0)
@@ -26,39 +27,34 @@ export default function CategoryCoverImage({
 
   const src = candidates[index]
 
-  useEffect(() => {
-    const img = imgRef.current
-    if (img?.complete && img.naturalWidth > 0) {
-      setLoaded(true)
-    }
-  }, [src, index])
   if (!src) {
     onAllFailed?.()
     return null
   }
 
   return (
-    <div className="absolute inset-0">
+    <div ref={ref} className="absolute inset-0">
       {!loaded && <div className="photo-loader absolute inset-0" aria-hidden="true" />}
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-        className={`${className} transition-opacity duration-500 ${
-          loaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        onLoad={() => setLoaded(true)}
-        onError={() => {
-          if (index < candidates.length - 1) {
-            setIndex((i) => i + 1)
-            setLoaded(false)
-          } else {
-            onAllFailed?.()
-          }
-        }}
-      />
+      {near ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className={`${className} transition-opacity duration-500 ${
+            loaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => setLoaded(true)}
+          onError={() => {
+            if (index < candidates.length - 1) {
+              setIndex((i) => i + 1)
+              setLoaded(false)
+            } else {
+              onAllFailed?.()
+            }
+          }}
+        />
+      ) : null}
     </div>
   )
 }

@@ -2,6 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import ScrollReveal from '../components/ScrollReveal'
+import { DEFAULT_PAGE_META } from '../config/site'
+import { usePageMeta } from '../hooks/usePageMeta'
 import {
   EmailIcon,
   FacebookIcon,
@@ -42,7 +45,7 @@ function CategoryCard({
   return (
     <Link
       to={`/work/${slug}`}
-      className={`group relative block overflow-hidden bg-brand-light ${coverAspectClass[coverAspect]}`}
+      className={`group relative block h-full overflow-hidden bg-brand-light ${coverAspectClass[coverAspect]}`}
     >
       {!coverMissing && (
         <CategoryCoverImage
@@ -63,6 +66,8 @@ function CategoryCard({
 
 export default function HomePage() {
   const location = useLocation()
+
+  usePageMeta(DEFAULT_PAGE_META)
 
   useEffect(() => {
     const id = location.hash.replace('#', '')
@@ -106,25 +111,28 @@ export default function HomePage() {
 
       {/* Work */}
       <section id="work" className="scroll-mt-20 px-6 py-24 md:px-10 lg:px-16">
-        <p className="mb-10 text-xs uppercase tracking-[0.2em] text-brand-gray">
-          selected work
-        </p>
+        <ScrollReveal>
+          <p className="mb-10 text-xs uppercase tracking-[0.2em] text-brand-gray">
+            selected work
+          </p>
+        </ScrollReveal>
         <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
-            <CategoryCard
-              key={category.slug}
-              slug={category.slug}
-              name={category.name}
-              coverAspect={category.coverAspect}
-              coverPosition={category.coverPosition}
-            />
+            <ScrollReveal key={category.slug} className="h-full">
+              <CategoryCard
+                slug={category.slug}
+                name={category.name}
+                coverAspect={category.coverAspect}
+                coverPosition={category.coverPosition}
+              />
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* About */}
       <section id="about" className="scroll-mt-20 border-t border-[#e5e5e5] px-6 py-24 md:px-10 lg:px-16">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+        <ScrollReveal className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <h2 className="text-3xl font-extrabold lowercase leading-snug text-brand-black md:text-4xl lg:text-5xl">
             nearly eight years.
             <br />
@@ -148,9 +156,9 @@ export default function HomePage() {
               of the day.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
 
-        <div className="mt-20 grid grid-cols-1 gap-12 border-t border-[#e5e5e5] pt-16 sm:grid-cols-3">
+        <ScrollReveal className="mt-20 grid grid-cols-1 gap-12 border-t border-[#e5e5e5] pt-16 sm:grid-cols-3">
           <div>
             <p className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl">
               8+
@@ -169,12 +177,12 @@ export default function HomePage() {
             </p>
             <p className="mt-2 text-sm lowercase text-brand-gray">based in</p>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Contact */}
       <section id="contact" className="scroll-mt-20 border-t border-[#e5e5e5] px-6 py-24 md:px-10 lg:px-16">
-        <div className="grid gap-16 lg:grid-cols-2">
+        <ScrollReveal className="grid gap-16 lg:grid-cols-2">
           <div>
             <h2 className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl">
               let&apos;s work together
@@ -208,11 +216,11 @@ export default function HomePage() {
             </li>
             <li>
               <a
-                href="mailto:r.andreitomas@gmail.com"
+                href="mailto:ralphandrei.studio@gmail.com"
                 className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
               >
                 <EmailIcon />
-                r.andreitomas@gmail.com
+                ralphandrei.studio@gmail.com
               </a>
             </li>
             <li>
@@ -225,7 +233,7 @@ export default function HomePage() {
               </a>
             </li>
           </ul>
-        </div>
+        </ScrollReveal>
       </section>
 
       <Footer />

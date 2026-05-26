@@ -1,10 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import RootLayout from './components/RootLayout'
 import HomePage from './pages/HomePage'
 import CategoryPage from './pages/CategoryPage'
 
 const router = createBrowserRouter([
-  { path: '/', element: <HomePage /> },
-  { path: '/work/:slug', element: <CategoryPage /> },
+  {
+    element: <RootLayout />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/work/:slug', element: <CategoryPage /> },
+    ],
+  },
 ])
 
 export default function App() {

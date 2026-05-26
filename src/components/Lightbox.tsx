@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import PhotoImage from './PhotoImage'
 import type { Photo } from '../types'
 
@@ -9,6 +9,8 @@ interface LightboxProps {
   onNavigate: (index: number) => void
 }
 
+const SWIPE_THRESHOLD = 48
+
 export default function Lightbox({
   photos,
   currentIndex,
@@ -18,6 +20,7 @@ export default function Lightbox({
   const photo = photos[currentIndex]
   const hasPrev = currentIndex > 0
   const hasNext = currentIndex < photos.length - 1
+  const touchStart = useRef<{ x: number; y: number } | null>(null)
 
   const goPrev = useCallback(() => {
     if (hasPrev) onNavigate(currentIndex - 1)
@@ -42,15 +45,35 @@ export default function Lightbox({
     }
   }, [onClose, goPrev, goNext])
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    }
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart.current) return
+    const dx = e.changedTouches[0].clientX - touchStart.current.x
+    const dy = e.changedTouches[0].clientY - touchStart.current.y
+    touchStart.current = null
+
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return
+    if (dx > 0) goPrev()
+    else goNext()
+  }
+
   if (!photo) return null
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center touch-pan-y"
       style={{ backgroundColor: 'rgba(0, 0, 0, 0.95)' }}
       role="dialog"
       aria-modal="true"
       aria-label={photo.title}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <button
         type="button"
@@ -68,7 +91,7 @@ export default function Lightbox({
             e.stopPropagation()
             goPrev()
           }}
-          className="absolute left-4 top-1/2 z-10 -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 transition-opacity hover:opacity-80"
+          className="absolute left-4 top-1/2 z-10 hidden -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 transition-opacity hover:opacity-80 sm:block"
           aria-label="Previous photo"
         >
           ‹
@@ -82,7 +105,7 @@ export default function Lightbox({
             e.stopPropagation()
             goNext()
           }}
-          className="absolute right-4 top-1/2 z-10 -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 transition-opacity hover:opacity-80"
+          className="absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 transition-opacity hover:opacity-80 sm:block"
           aria-label="Next photo"
         >
           ›
@@ -98,6 +121,7 @@ export default function Lightbox({
           src={photo.src}
           alt={photo.title || 'Photo'}
           loading="eager"
+          loadWhenNear={false}
           loaderVariant="dark"
           wrapperClassName="flex min-h-[50vh] w-full max-w-[85vw] items-center justify-center"
           className="relative z-10 max-h-[80vh] max-w-full object-contain"
@@ -124,6 +148,7 @@ export default function Lightbox({
               ))}
             </div>
           )}
+          <p className="mt-4 text-xs text-white/40 sm:hidden">swipe to navigate</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,15 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import { syncGallery } from './scripts/sync-gallery.mjs' // types: scripts/sync-gallery.d.ts
+import { execFileSync } from 'node:child_process'
+import { syncGallery } from './scripts/sync-gallery.mjs'
+
+function runGenerateSitemap(root: string) {
+  execFileSync(process.execPath, [path.join(root, 'scripts', 'generate-sitemap.mjs')], {
+    cwd: root,
+    stdio: 'inherit',
+  })
+}
 
 function gallerySyncPlugin(): Plugin {
   let root = process.cwd()
@@ -13,9 +21,11 @@ function gallerySyncPlugin(): Plugin {
     },
     buildStart() {
       syncGallery()
+      runGenerateSitemap(root)
     },
     configureServer(server) {
       syncGallery()
+      runGenerateSitemap(root)
       const photosDir = path.join(root, 'public', 'photos')
       server.watcher.add(photosDir)
 
