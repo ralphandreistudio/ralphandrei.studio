@@ -205,7 +205,7 @@ export default function HomePage() {
             </li>
             <li>
               <a
-                href="https://www.facebook.com/studio.randreit"
+                href="https://www.facebook.com/ralphandrei.studio"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
@@ -229,7 +229,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
               >
                 <PhoneIcon />
-                +63 995 7413090
+                +63 995 741 3090
               </a>
             </li>
           </ul>
