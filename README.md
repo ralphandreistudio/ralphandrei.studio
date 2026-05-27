@@ -1,5 +1,18 @@
 # React + TypeScript + Vite
 
+## Open Graph / Facebook link preview image
+
+The home page is captured as `public/og-image.png` (1200×630) for social previews.
+
+```bash
+npx playwright install chromium   # once per machine
+npm run capture-og                # builds, runs preview, screenshots → public/og-image.png
+```
+
+After changing the landing page design, run `capture-og` again and commit the updated PNG. Facebook may cache the old image — use the [Sharing Debugger](https://developers.facebook.com/tools/debug/) and **Scrape Again**.
+
+---
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
