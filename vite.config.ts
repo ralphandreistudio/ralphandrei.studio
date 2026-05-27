@@ -63,11 +63,19 @@ function siteUrlPlugin(siteUrl: string): Plugin {
   }
 }
 
+function resolveSiteUrl(env: Record<string, string>): string {
+  if (env.VITE_SITE_URL) return env.VITE_SITE_URL.replace(/\/$/, '')
+  // Auto-match the live Vercel URL when env is not set (fixes Facebook og:image on deploy)
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL.replace(/\/$/, '')}`
+  }
+  return 'https://ralphandrei-studio.vercel.app'
+}
+
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const siteUrl =
-    env.VITE_SITE_URL || 'https://studio-ralph-andrei.vercel.app'
+  const siteUrl = resolveSiteUrl(env)
 
   return {
     plugins: [siteUrlPlugin(siteUrl), gallerySyncPlugin(), react()],

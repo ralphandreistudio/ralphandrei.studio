@@ -1,8 +1,10 @@
 export const SITE_NAME = 'studio ralph andrei'
 
 export function getSiteUrl(): string {
-  const url = import.meta.env.VITE_SITE_URL || 'https://studio-ralph-andrei.vercel.app'
-  return url.replace(/\/$/, '')
+  const fromEnv = import.meta.env.VITE_SITE_URL
+  if (fromEnv) return fromEnv.replace(/\/$/, '')
+  if (typeof window !== 'undefined') return window.location.origin
+  return 'https://ralphandrei-studio.vercel.app'
 }
 
 export const DEFAULT_PAGE_META = {

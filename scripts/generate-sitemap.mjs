@@ -15,8 +15,11 @@ function getSiteUrl() {
       .match(/^VITE_SITE_URL=(.+)$/m)
     if (match) return match[1].trim().replace(/\/$/, '')
   }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL.replace(/\/$/, '')}`
+  }
   return (
-    process.env.VITE_SITE_URL || 'https://studio-ralph-andrei.vercel.app'
+    process.env.VITE_SITE_URL || 'https://ralphandrei-studio.vercel.app'
   ).replace(/\/$/, '')
 }
 

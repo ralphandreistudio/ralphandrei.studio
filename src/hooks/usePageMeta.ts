@@ -47,6 +47,7 @@ export function usePageMeta({ title, description, path, image }: PageMetaOptions
     upsertMeta('og:description', description, 'property')
     upsertMeta('og:url', canonical, 'property')
     upsertMeta('og:image', imagePath, 'property')
+    upsertMeta('og:image:secure_url', imagePath, 'property')
     upsertMeta('twitter:card', 'summary_large_image')
     upsertMeta('twitter:title', title)
     upsertMeta('twitter:description', description)
