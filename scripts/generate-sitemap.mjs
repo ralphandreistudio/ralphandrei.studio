@@ -15,8 +15,10 @@ function getSiteUrl() {
       .match(/^VITE_SITE_URL=(.+)$/m)
     if (match) return match[1].trim().replace(/\/$/, '')
   }
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL.replace(/\/$/, '')}`
+  const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  if (prod) {
+    const host = prod.replace(/^https?:\/\//i, '').replace(/\/$/, '')
+    return `https://${host}`
   }
   return (
     process.env.VITE_SITE_URL || 'https://ralphandrei-studio.vercel.app'

@@ -65,10 +65,14 @@ function siteUrlPlugin(siteUrl: string): Plugin {
 
 function resolveSiteUrl(env: Record<string, string>): string {
   if (env.VITE_SITE_URL) return env.VITE_SITE_URL.replace(/\/$/, '')
-  // Auto-match the live Vercel URL when env is not set (fixes Facebook og:image on deploy)
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL.replace(/\/$/, '')}`
+  // Stable production hostname (e.g. my-app.vercel.app). Safe for og:image / canonical.
+  const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  if (prod) {
+    const host = prod.replace(/^https?:\/\//i, '').replace(/\/$/, '')
+    return `https://${host}`
   }
+  // Do NOT use VERCEL_URL here — it is a unique deployment URL that often returns 401 to
+  // crawlers, so Facebook cannot fetch og:image.
   return 'https://ralphandrei-studio.vercel.app'
 }
 

@@ -6,8 +6,10 @@ The home page is captured as `public/og-image.png` (1200×630) for social previe
 
 ```bash
 npx playwright install chromium   # once per machine
-npm run capture-og                # builds, runs preview, screenshots → public/og-image.png
+npm run capture-og                # screenshots live site → public/og-image.png (see script for OG_CAPTURE_URL)
 ```
+
+**Vercel:** set `VITE_SITE_URL` to your public URL in Production (e.g. `https://ralphandrei-studio.vercel.app`). The build must not use the per-deployment `VERCEL_URL` in `og:image` — those URLs can return **401** to Facebook’s crawler, so the preview has no image.
 
 After changing the landing page design, run `capture-og` again and commit the updated PNG. Facebook may cache the old image — use the [Sharing Debugger](https://developers.facebook.com/tools/debug/) and **Scrape Again**.
 
