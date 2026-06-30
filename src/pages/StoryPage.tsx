@@ -13,13 +13,13 @@ export default function StoryPage() {
   usePageMeta(
     story
       ? {
-          title: `${story.title} · studio ralph andrei`,
+          title: `${story.title} · Studio Ralph Andrei`,
           description: story.excerpt,
           path: `/stories/${story.slug}`,
           image: story.cover,
         }
       : {
-          title: 'not found · studio ralph andrei',
+          title: 'Not Found · Studio Ralph Andrei',
           description: 'This story could not be found.',
           path: slug ? `/stories/${slug}` : '/stories',
         },
@@ -34,7 +34,7 @@ export default function StoryPage() {
       <div className="flex min-h-screen flex-col bg-white">
         <Navbar />
         <div className="flex flex-1 items-center justify-center px-6 pt-24">
-          <p className="lowercase text-brand-gray">not found</p>
+          <p className="text-brand-gray">Not found</p>
         </div>
         <Footer />
       </div>
@@ -49,16 +49,16 @@ export default function StoryPage() {
       <header className="px-6 pt-28 pb-10 md:px-10 lg:px-16">
         <Link
           to="/stories"
-          className="text-sm lowercase text-brand-black transition-opacity hover:opacity-60"
+          className="text-sm text-brand-black transition-opacity hover:opacity-60"
         >
-          ← stories
+          ← Stories
         </Link>
         <ScrollReveal>
           <p className="mt-8 text-xs uppercase tracking-[0.2em] text-brand-gray">
             {story.date}
           </p>
-          <h1 className="mt-3 text-4xl font-extrabold lowercase leading-tight text-brand-black md:text-5xl lg:text-6xl">
-            {story.title.toLowerCase()}
+          <h1 className="mt-3 text-4xl font-extrabold leading-tight text-brand-black md:text-5xl lg:text-6xl">
+            {story.title}
           </h1>
         </ScrollReveal>
       </header>
@@ -79,13 +79,13 @@ export default function StoryPage() {
         {story.sections.map((section, si) => (
           <ScrollReveal key={si} className="mb-12">
             {section.heading && (
-              <h2 className="mb-5 text-2xl font-extrabold lowercase text-brand-black md:text-3xl">
-                {section.heading.toLowerCase()}
+              <h2 className="mb-5 text-2xl font-extrabold text-brand-black md:text-3xl">
+                {section.heading}
               </h2>
             )}
             <div className="space-y-5">
               {section.paragraphs.map((para, pi) => (
-                <p key={pi} className="text-base leading-relaxed text-brand-gray lowercase">
+                <p key={pi} className="text-base leading-relaxed text-brand-gray">
                   {para}
                 </p>
               ))}
@@ -95,7 +95,7 @@ export default function StoryPage() {
 
         {story.credit && (
           <ScrollReveal>
-            <p className="mt-4 border-t border-[#e5e5e5] pt-8 text-xs lowercase italic text-brand-gray">
+            <p className="mt-4 border-t border-[#e5e5e5] pt-8 text-xs italic text-brand-gray">
               {story.credit}
             </p>
           </ScrollReveal>
@@ -107,7 +107,7 @@ export default function StoryPage() {
         <section className="border-t border-[#e5e5e5] px-6 pb-24 pt-16 md:px-10 lg:px-16">
           <ScrollReveal>
             <p className="mb-10 text-xs uppercase tracking-[0.2em] text-brand-gray">
-              photos from the event
+              Photos from the Event
             </p>
           </ScrollReveal>
           <div className="columns-1 gap-1 space-y-1 md:columns-2 lg:columns-3">

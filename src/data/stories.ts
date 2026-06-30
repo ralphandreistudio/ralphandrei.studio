@@ -19,7 +19,7 @@ export const stories: Story[] = [
   {
     slug: 'bakas-exude-dancers-concert',
     title: 'BAKAS: The Mark That Exude Dancers Leave Behind',
-    date: 'june 28, 2026',
+    date: 'June 28, 2026',
     dateIso: '2026-06-28',
     excerpt:
       'On the evening of June 28, 2026, the FEU Tech Gymnasium filled up fast for BAKAS — the first full-length concert ever staged by FEU Institute of Technology\'s Artist Connection Exude Dancers.',

@@ -7,7 +7,7 @@ import { stories } from '../data/stories'
 
 export default function StoriesPage() {
   usePageMeta({
-    title: 'stories · studio ralph andrei',
+    title: 'Stories · Studio Ralph Andrei',
     description:
       'Articles and published writing from Studio Ralph Andrei — covering events, partnerships, and the stories behind the work.',
     path: '/stories',
@@ -20,24 +20,24 @@ export default function StoriesPage() {
       <header className="px-6 pt-28 pb-12 md:px-10 lg:px-16">
         <Link
           to="/"
-          className="text-sm lowercase text-brand-black transition-opacity hover:opacity-60"
+          className="text-sm text-brand-black transition-opacity hover:opacity-60"
         >
-          ← home
+          ← Home
         </Link>
         <ScrollReveal>
-          <h1 className="mt-8 text-4xl font-extrabold lowercase text-brand-black md:text-5xl lg:text-6xl">
-            stories
+          <h1 className="mt-8 text-4xl font-extrabold text-brand-black md:text-5xl lg:text-6xl">
+            Stories
           </h1>
-          <p className="mt-4 max-w-xl text-brand-gray lowercase">
-            articles and published writing from the studio.
+          <p className="mt-4 max-w-xl text-brand-gray">
+            Articles and published writing from the studio.
           </p>
         </ScrollReveal>
       </header>
 
       <main className="px-6 pb-24 md:px-10 lg:px-16">
         {stories.length === 0 ? (
-          <p className="py-24 text-center lowercase text-brand-gray">
-            no stories yet — check back soon.
+          <p className="py-24 text-center text-brand-gray">
+            No stories yet — check back soon.
           </p>
         ) : (
           <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
@@ -59,14 +59,14 @@ export default function StoriesPage() {
                     <p className="text-xs uppercase tracking-[0.15em] text-brand-gray">
                       {story.date}
                     </p>
-                    <h2 className="mt-2 text-base font-extrabold lowercase leading-snug text-brand-black transition-opacity group-hover:opacity-60">
-                      {story.title.toLowerCase()}
+                    <h2 className="mt-2 text-base font-extrabold leading-snug text-brand-black transition-opacity group-hover:opacity-60">
+                      {story.title}
                     </h2>
-                    <p className="mt-2 line-clamp-3 text-sm lowercase text-brand-gray">
+                    <p className="mt-2 line-clamp-3 text-sm text-brand-gray">
                       {story.excerpt}
                     </p>
-                    <span className="mt-4 inline-block text-xs lowercase text-brand-black transition-opacity group-hover:opacity-60">
-                      read more →
+                    <span className="mt-4 inline-block text-xs text-brand-black transition-opacity group-hover:opacity-60">
+                      Read more →
                     </span>
                   </div>
                 </Link>
