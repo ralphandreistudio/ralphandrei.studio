@@ -1,9 +1,20 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface NavbarProps {
   onScrollTo?: (id: string) => void
 }
+
+type NavItem =
+  | { type: 'scroll'; id: string; label: string }
+  | { type: 'link'; href: string; label: string }
+
+const navItems: NavItem[] = [
+  { type: 'scroll', id: 'work', label: 'work' },
+  { type: 'scroll', id: 'about', label: 'about' },
+  { type: 'link', href: '/stories', label: 'stories' },
+  { type: 'scroll', id: 'contact', label: 'contact' },
+]
 
 export default function Navbar({ onScrollTo }: NavbarProps) {
   const navigate = useNavigate()
@@ -17,7 +28,7 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
     }
   }, [menuOpen])
 
-  const handleNavClick = (id: string) => {
+  const handleScrollClick = (id: string) => {
     setMenuOpen(false)
     if (onScrollTo) {
       onScrollTo(id)
@@ -31,12 +42,6 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
     navigate('/')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
-  const navItems = [
-    { id: 'work', label: 'work' },
-    { id: 'about', label: 'about' },
-    { id: 'contact', label: 'contact' },
-  ] as const
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 border-b border-[#e5e5e5] bg-white">
@@ -52,14 +57,23 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
 
         <ul className="hidden items-center gap-8 text-sm lowercase text-brand-black md:flex">
           {navItems.map((item) => (
-            <li key={item.id}>
-              <button
-                type="button"
-                onClick={() => handleNavClick(item.id)}
-                className="transition-opacity hover:opacity-60"
-              >
-                {item.label}
-              </button>
+            <li key={item.label}>
+              {item.type === 'link' ? (
+                <Link
+                  to={item.href}
+                  className="transition-opacity hover:opacity-60"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => handleScrollClick(item.id)}
+                  className="transition-opacity hover:opacity-60"
+                >
+                  {item.label}
+                </button>
+              )}
             </li>
           ))}
         </ul>
@@ -104,14 +118,24 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
           >
             <ul className="flex flex-col gap-1 px-6 py-4 text-lg lowercase text-brand-black">
               {navItems.map((item) => (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => handleNavClick(item.id)}
-                    className="block w-full py-3 text-left transition-opacity hover:opacity-60"
-                  >
-                    {item.label}
-                  </button>
+                <li key={item.label}>
+                  {item.type === 'link' ? (
+                    <Link
+                      to={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block w-full py-3 transition-opacity hover:opacity-60"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handleScrollClick(item.id)}
+                      className="block w-full py-3 text-left transition-opacity hover:opacity-60"
+                    >
+                      {item.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
