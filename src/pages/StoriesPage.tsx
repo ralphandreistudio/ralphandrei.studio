@@ -42,10 +42,10 @@ export default function StoriesPage() {
         ) : (
           <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
             {stories.map((story) => (
-              <ScrollReveal key={story.slug}>
+              <ScrollReveal key={story.slug} className="h-full">
                 <Link
                   to={`/stories/${story.slug}`}
-                  className="group block bg-white"
+                  className="group flex h-full flex-col bg-white"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-brand-light">
                     <img
@@ -55,7 +55,7 @@ export default function StoriesPage() {
                     />
                     <div className="absolute inset-0 bg-black/0 transition-colors duration-200 group-hover:bg-black/30" />
                   </div>
-                  <div className="px-4 py-5">
+                  <div className="flex flex-1 flex-col px-4 py-5">
                     <p className="text-xs uppercase tracking-[0.15em] text-brand-gray">
                       {story.date}
                     </p>
@@ -65,7 +65,7 @@ export default function StoriesPage() {
                     <p className="mt-2 line-clamp-3 text-sm text-brand-gray">
                       {story.excerpt}
                     </p>
-                    <span className="mt-4 inline-block text-xs text-brand-black transition-opacity group-hover:opacity-60">
+                    <span className="mt-auto inline-block pt-4 text-xs text-brand-black transition-opacity group-hover:opacity-60">
                       Read more →
                     </span>
                   </div>
