@@ -17,6 +17,53 @@ export interface Story {
 
 export const stories: Story[] = [
   {
+    slug: 'bawz-stage-vol-4',
+    title: 'BAWZ STAGE VOL. 4: Dancing for a Seat on the World Stage',
+    date: 'July 25, 2026',
+    dateIso: '2026-07-25',
+    excerpt:
+      "On the evening of July 25, 2026, the SM North EDSA Skydome filled with dancers, families, and supporters for BAWZ STAGE VOL. 4, the fourth staging of BAWZ's annual fundraising concert.",
+    cover: '/stories/bawz-stage-vol-4/poster.jpg',
+    photos: [
+      { src: '/stories/bawz-stage-vol-4/1.jpg', alt: 'BAWZ STAGE VOL. 4 — opening number' },
+      { src: '/stories/bawz-stage-vol-4/2.jpg', alt: 'BAWZ STAGE VOL. 4 — guest crew performance' },
+      { src: '/stories/bawz-stage-vol-4/3.jpg', alt: 'BAWZ STAGE VOL. 4 — group number' },
+      { src: '/stories/bawz-stage-vol-4/4.jpg', alt: 'BAWZ STAGE VOL. 4 — solo performance' },
+      { src: '/stories/bawz-stage-vol-4/5.jpg', alt: 'BAWZ STAGE VOL. 4 — BAWZ Complex showcase' },
+      { src: '/stories/bawz-stage-vol-4/6.jpg', alt: 'BAWZ STAGE VOL. 4 — full cast' },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "On the evening of July 25, 2026, the SM North EDSA Skydome filled with dancers, families, and supporters for BAWZ STAGE VOL. 4, the fourth staging of BAWZ's annual fundraising concert. Studio Ralph Andrei joined as Media Partner for the night, documenting a show that carried far more weight than a typical showcase.",
+          "The concert arrives at a milestone moment for the Filipino dance collective. For the first time, BAWZ is set to represent the Philippines at the International Dance League's Community Division in Seoul, South Korea, competing alongside seven other teams from across Southeast Asia. Founded by the team behind STEEZY, IDL bills itself as the world's first professional dance league, structuring its competitions after professional sports leagues rather than the one-off battle format most local dancers grew up with. STAGE VOL. 4 exists to help get BAWZ there.",
+        ],
+      },
+      {
+        heading: 'A Concert Built on Community',
+        paragraphs: [
+          "Founded in 2019, BAWZ has spent the years since building more than a competitive resume. It has built a community, one that extends well past its own roster. That was on full display at STAGE VOL. 4, where BAWZ shared the stage with some of the country's most established crews, among them TPM, And Friends, ILLKNGDM, 10TATIVE, XYZ, KKV, The Manoeuvres, and Team BRRRT. Members of Jam Republic SEA, the Pro Division team captained by BAWZ founder Aennon Tabungar, also joined for individual guest performances in support of the fundraiser.",
+          "That structure, competing teams sharing one stage for a common cause, reflected the concert's core idea. This year's production centered less on individual wins and more on what it actually takes to pursue dance professionally in the Philippines: the sacrifices that happen off camera, the setbacks that don't make it into a highlight reel, and the resilience it takes to keep choosing this path anyway. As Tabungar put it, they wanted the concert to tell a story that many dancers would recognize.",
+        ],
+      },
+      {
+        heading: 'What the Funds Are For',
+        paragraphs: [
+          "STAGE VOL. 4 is a fundraiser first. Ticket proceeds go toward BAWZ's campaign in Seoul, as well as the team's second roster, which is expected to compete in another international competition later this year. The concert also made room for BAWZ Complex, the group's Quezon City-based studio, where students from the Summer Dance Camp Year II took the stage to perform pieces built under the guidance of BAWZ's own instructors, proof that the pipeline the team is building runs both toward the world stage and back into the local community.",
+        ],
+      },
+      {
+        heading: 'Representing More Than a Team',
+        paragraphs: [
+          "What made STAGE VOL. 4 more than a competition send-off was how clearly it tied BAWZ's international ambitions back to where the group started. A team that formed in 2019 is now preparing to compete on a global stage, and it chose to mark that step not with a closed rehearsal or a quiet departure, but with a full concert built around the community that helped get them there. Guest crews, students, and fellow competitors all shared one night, one stage, and one cause.",
+          'For Studio Ralph Andrei, covering STAGE VOL. 4 meant documenting a team on the edge of something bigger than themselves, still choosing, on the night before that leap, to make the show about everyone who helped carry them to it.',
+        ],
+      },
+    ],
+    credit:
+      'Studio Ralph Andrei served as Media Partner for BAWZ STAGE VOL. 4, held July 25, 2026 at the SM North EDSA Skydome, Quezon City.',
+  },
+  {
     slug: 'bakas-exude-dancers-concert',
     title: 'BAKAS: The Mark That Exude Dancers Leave Behind',
     date: 'June 28, 2026',

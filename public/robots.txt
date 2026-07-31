@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://studio-ralph-andrei.vercel.app/sitemap.xml
+Sitemap: https://ralphandrei-studio.vercel.app/sitemap.xml
