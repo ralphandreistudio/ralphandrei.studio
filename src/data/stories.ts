@@ -49,7 +49,7 @@ export const stories: Story[] = [
       {
         heading: 'What the Funds Are For',
         paragraphs: [
-          "STAGE VOL. 4 is a fundraiser first. Ticket proceeds go toward BAWZ's campaign in Seoul, as well as the team's second roster, which is expected to compete in another international competition later this year. The concert also made room for BAWZ Complex, the group's Quezon City-based studio, where students from the Summer Dance Camp Year II took the stage to perform pieces built under the guidance of BAWZ's own instructors, proof that the pipeline the team is building runs both toward the world stage and back into the local community.",
+          "STAGE VOL. 4 is a fundraiser first. Ticket proceeds go toward BAWZ's campaign for the International Dance League's Community Division in Seoul, as well as the team's second roster, which is expected to compete in another international competition later this year. That IDL Community Division run goes live on August 1, 2026, at 6:30 PM — the next chapter the concert was built to support. The night also made room for BAWZ Complex, the group's Quezon City-based studio, where students from the Summer Dance Camp Year II took the stage to perform pieces built under the guidance of BAWZ's own instructors, proof that the pipeline the team is building runs both toward the world stage and back into the local community.",
         ],
       },
       {
