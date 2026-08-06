@@ -51,12 +51,12 @@ function CategoryCard({
         <CategoryCoverImage
           slug={slug}
           alt={name}
-          className={`h-full w-full object-cover ${coverPositionClass[coverPosition]}`}
+          className={`h-full w-full object-cover transition-transform duration-500 ease-out-strong motion-reduce:transition-none group-hover-zoom ${coverPositionClass[coverPosition]}`}
           onAllFailed={() => setCoverMissing(true)}
         />
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover:bg-black/40">
-        <span className="px-4 text-center text-lg font-extrabold lowercase text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+      <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-[background-color] duration-250 ease-out-strong group-hover-dim">
+        <span className="px-4 text-center text-lg font-extrabold lowercase text-white opacity-0 transition-opacity duration-250 ease-out-strong group-hover-fade-in">
           {name.toLowerCase()}
         </span>
       </div>
@@ -93,17 +93,16 @@ export default function HomePage() {
       {/* Hero */}
       <section className="flex min-h-screen flex-col justify-center px-6 pt-24 md:px-10 lg:px-16">
         <h1 className="text-[clamp(3rem,8vw,7rem)] font-extrabold lowercase leading-[1.05] text-brand-black">
-          every frame
-          <br />
-          tells a story
+          <span className="hero-in block">every frame</span>
+          <span className="hero-in hero-in-delay-1 block">tells a story</span>
         </h1>
-        <p className="mt-8 max-w-3xl text-xs uppercase tracking-[0.2em] text-brand-gray">
+        <p className="hero-in hero-in-delay-2 mt-8 max-w-3xl text-xs uppercase tracking-[0.2em] text-brand-gray">
           {categories.map((c) => c.name.toLowerCase()).join(' · ')}
         </p>
         <button
           type="button"
           onClick={scrollToWork}
-          className="mt-10 w-fit text-sm lowercase text-brand-black transition-opacity hover:opacity-60"
+          className="hero-in hero-in-delay-3 pressable mt-10 w-fit text-sm lowercase text-brand-black hover-fine-opacity"
         >
           view work ↓
         </button>
@@ -117,8 +116,8 @@ export default function HomePage() {
           </p>
         </ScrollReveal>
         <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
-          {categories.map((category) => (
-            <ScrollReveal key={category.slug} className="h-full">
+          {categories.map((category, index) => (
+            <ScrollReveal key={category.slug} className="h-full" delay={index * 50}>
               <CategoryCard
                 slug={category.slug}
                 name={category.name}
@@ -197,7 +196,7 @@ export default function HomePage() {
                 href="https://www.instagram.com/studioralphandrei/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
+                className="pressable inline-flex items-center gap-3 text-brand-black hover-fine-opacity"
               >
                 <InstagramIcon />
                 instagram
@@ -208,7 +207,7 @@ export default function HomePage() {
                 href="https://www.facebook.com/ralphandrei.studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
+                className="pressable inline-flex items-center gap-3 text-brand-black hover-fine-opacity"
               >
                 <FacebookIcon />
                 facebook
@@ -217,7 +216,7 @@ export default function HomePage() {
             <li>
               <a
                 href="mailto:ralphandrei.studio@gmail.com"
-                className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
+                className="pressable inline-flex items-center gap-3 text-brand-black hover-fine-opacity"
               >
                 <EmailIcon />
                 ralphandrei.studio@gmail.com
@@ -226,7 +225,7 @@ export default function HomePage() {
             <li>
               <a
                 href="tel:+639957413090"
-                className="inline-flex items-center gap-3 text-brand-black transition-opacity hover:opacity-60"
+                className="pressable inline-flex items-center gap-3 text-brand-black hover-fine-opacity"
               >
                 <PhoneIcon />
                 +63 995 741 3090

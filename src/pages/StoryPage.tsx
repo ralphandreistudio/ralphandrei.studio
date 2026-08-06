@@ -49,7 +49,7 @@ export default function StoryPage() {
       <header className="px-6 pt-28 pb-10 md:px-10 lg:px-16">
         <Link
           to="/stories"
-          className="text-sm text-brand-black transition-opacity hover:opacity-60"
+          className="text-sm text-brand-black hover-fine-opacity"
         >
           ← Stories
         </Link>
@@ -64,7 +64,7 @@ export default function StoryPage() {
       </header>
 
       {/* Cover image */}
-      <ScrollReveal>
+      <ScrollReveal variant="clip">
         <div className="flex justify-center bg-brand-light px-6 md:px-10 lg:px-16">
           <img
             src={story.cover}
@@ -112,11 +112,11 @@ export default function StoryPage() {
           </ScrollReveal>
           <div className="columns-1 gap-1 space-y-1 md:columns-2 lg:columns-3">
             {story.photos.map((photo, i) => (
-              <ScrollReveal key={i}>
+              <ScrollReveal key={i} delay={(i % 6) * 50}>
                 <img
                   src={photo.src}
                   alt={photo.alt}
-                  className="w-full break-inside-avoid transition-transform duration-300 hover:scale-[1.01]"
+                  className="w-full break-inside-avoid transition-transform duration-500 ease-out-strong motion-reduce:transition-none hover-fine-zoom"
                 />
               </ScrollReveal>
             ))}

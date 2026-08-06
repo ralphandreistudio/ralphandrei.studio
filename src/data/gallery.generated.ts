@@ -214,6 +214,30 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
     {
       "id": "dance-15",
       "src": "/photos/dance/15.JPG"
+    },
+    {
+      "id": "dance-16",
+      "src": "/photos/dance/16.JPG"
+    },
+    {
+      "id": "dance-17",
+      "src": "/photos/dance/17.JPG"
+    },
+    {
+      "id": "dance-18",
+      "src": "/photos/dance/18.JPG"
+    },
+    {
+      "id": "dance-19",
+      "src": "/photos/dance/19.JPG"
+    },
+    {
+      "id": "dance-20",
+      "src": "/photos/dance/20.JPG"
+    },
+    {
+      "id": "dance-21",
+      "src": "/photos/dance/21.JPG"
     }
   ],
   "events": [

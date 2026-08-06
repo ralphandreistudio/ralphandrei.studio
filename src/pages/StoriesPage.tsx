@@ -20,7 +20,7 @@ export default function StoriesPage() {
       <header className="px-6 pt-28 pb-12 md:px-10 lg:px-16">
         <Link
           to="/"
-          className="text-sm text-brand-black transition-opacity hover:opacity-60"
+          className="text-sm text-brand-black hover-fine-opacity"
         >
           ← Home
         </Link>
@@ -41,8 +41,8 @@ export default function StoriesPage() {
           </p>
         ) : (
           <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
-            {stories.map((story) => (
-              <ScrollReveal key={story.slug} className="h-full">
+            {stories.map((story, index) => (
+              <ScrollReveal key={story.slug} className="h-full" delay={index * 60}>
                 <Link
                   to={`/stories/${story.slug}`}
                   className="group flex h-full flex-col bg-white"
@@ -51,21 +51,21 @@ export default function StoriesPage() {
                     <img
                       src={story.cover}
                       alt={story.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      className="h-full w-full object-cover transition-transform duration-500 ease-out-strong motion-reduce:transition-none group-hover-zoom"
                     />
-                    <div className="absolute inset-0 bg-black/0 transition-colors duration-200 group-hover:bg-black/30" />
+                    <div className="absolute inset-0 bg-black/0 transition-[background-color] duration-250 ease-out-strong group-hover-dim" />
                   </div>
                   <div className="flex flex-1 flex-col px-4 py-5">
                     <p className="text-xs uppercase tracking-[0.15em] text-brand-gray">
                       {story.date}
                     </p>
-                    <h2 className="mt-2 text-base font-extrabold leading-snug text-brand-black transition-opacity group-hover:opacity-60">
+                    <h2 className="mt-2 text-base font-extrabold leading-snug text-brand-black transition-opacity duration-250 ease-out-strong group-hover-subtle">
                       {story.title}
                     </h2>
                     <p className="mt-2 line-clamp-3 text-sm text-brand-gray">
                       {story.excerpt}
                     </p>
-                    <span className="mt-auto inline-block pt-4 text-xs text-brand-black transition-opacity group-hover:opacity-60">
+                    <span className="mt-auto inline-block pt-4 text-xs text-brand-black transition-opacity duration-250 ease-out-strong group-hover-subtle">
                       Read more →
                     </span>
                   </div>

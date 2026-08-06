@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import PhotoImage from './PhotoImage'
 import type { Photo } from '../types'
 
@@ -20,7 +20,9 @@ export default function Lightbox({
   const photo = photos[currentIndex]
   const hasPrev = currentIndex > 0
   const hasNext = currentIndex < photos.length - 1
-  const touchStart = useRef<{ x: number; y: number } | null>(null)
+  const touchStart = useRef<{ x: number; y: number; time: number } | null>(null)
+  const [visible, setVisible] = useState(false)
+  const [changing, setChanging] = useState(false)
 
   const goPrev = useCallback(() => {
     if (hasPrev) onNavigate(currentIndex - 1)
@@ -29,6 +31,17 @@ export default function Lightbox({
   const goNext = useCallback(() => {
     if (hasNext) onNavigate(currentIndex + 1)
   }, [currentIndex, hasNext, onNavigate])
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setVisible(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
+
+  useEffect(() => {
+    setChanging(true)
+    const timer = window.setTimeout(() => setChanging(false), 200)
+    return () => window.clearTimeout(timer)
+  }, [currentIndex])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -49,6 +62,7 @@ export default function Lightbox({
     touchStart.current = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY,
+      time: Date.now(),
     }
   }
 
@@ -56,9 +70,12 @@ export default function Lightbox({
     if (!touchStart.current) return
     const dx = e.changedTouches[0].clientX - touchStart.current.x
     const dy = e.changedTouches[0].clientY - touchStart.current.y
+    const elapsed = Date.now() - touchStart.current.time
     touchStart.current = null
 
-    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return
+    const velocity = Math.abs(dx) / elapsed
+    if (Math.abs(dx) < SWIPE_THRESHOLD && velocity <= 0.11) return
+    if (Math.abs(dx) < Math.abs(dy)) return
     if (dx > 0) goPrev()
     else goNext()
   }
@@ -67,8 +84,9 @@ export default function Lightbox({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center touch-pan-y"
+      className="lightbox-backdrop fixed inset-0 z-50 flex flex-col items-center justify-center touch-pan-y"
       style={{ backgroundColor: 'rgba(0, 0, 0, 0.95)' }}
+      data-visible={visible}
       role="dialog"
       aria-modal="true"
       aria-label={photo.title}
@@ -78,7 +96,7 @@ export default function Lightbox({
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-6 top-6 z-10 text-2xl text-white transition-opacity hover:opacity-60"
+        className="pressable absolute right-6 top-6 z-10 text-2xl text-white hover-fine-opacity"
         aria-label="Close"
       >
         ✕
@@ -91,7 +109,7 @@ export default function Lightbox({
             e.stopPropagation()
             goPrev()
           }}
-          className="absolute left-4 top-1/2 z-10 hidden -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 transition-opacity hover:opacity-80 sm:block"
+          className="pressable absolute left-4 top-1/2 z-10 hidden -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 hover-fine-opacity sm:block"
           aria-label="Previous photo"
         >
           ‹
@@ -105,7 +123,7 @@ export default function Lightbox({
             e.stopPropagation()
             goNext()
           }}
-          className="absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 transition-opacity hover:opacity-80 sm:block"
+          className="pressable absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 px-4 py-8 text-4xl text-white opacity-40 hover-fine-opacity sm:block"
           aria-label="Next photo"
         >
           ›
@@ -113,20 +131,25 @@ export default function Lightbox({
       )}
 
       <div
-        className="flex max-h-[90vh] w-full flex-col items-center px-6 pt-16 pb-8"
+        className="lightbox-content flex max-h-[90vh] w-full flex-col items-center px-6 pt-16 pb-8"
+        data-visible={visible}
         onClick={onClose}
       >
-        <PhotoImage
-          key={photo.id}
-          src={photo.src}
-          alt={photo.title || 'Photo'}
-          loading="eager"
-          loadWhenNear={false}
-          loaderVariant="dark"
-          wrapperClassName="flex min-h-[50vh] w-full max-w-[85vw] items-center justify-center"
-          className="relative z-10 max-h-[80vh] max-w-full object-contain"
-          onClick={(e) => e.stopPropagation()}
-        />
+        <div
+          className="lightbox-photo flex min-h-[50vh] w-full max-w-[85vw] items-center justify-center"
+          data-changing={changing}
+        >
+          <PhotoImage
+            key={photo.id}
+            src={photo.src}
+            alt={photo.title || 'Photo'}
+            loading="eager"
+            loadWhenNear={false}
+            loaderVariant="dark"
+            className="relative z-10 max-h-[80vh] max-w-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
 
         <div
           className="mt-6 max-w-2xl text-center"

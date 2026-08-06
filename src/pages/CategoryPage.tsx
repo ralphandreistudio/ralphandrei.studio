@@ -48,7 +48,7 @@ export default function CategoryPage() {
       <header className="scroll-mt-24 px-6 pt-28 pb-12 md:px-10 lg:px-16">
         <Link
           to="/"
-          className="text-sm lowercase text-brand-black transition-opacity hover:opacity-60"
+          className="text-sm lowercase text-brand-black hover-fine-opacity"
         >
           ← home
         </Link>
@@ -70,20 +70,20 @@ export default function CategoryPage() {
         ) : (
           <div className="grid grid-cols-1 items-center gap-1 md:grid-cols-2 lg:grid-cols-3">
             {photos.map((photo, index) => (
-              <ScrollReveal key={photo.id}>
+              <ScrollReveal key={photo.id} delay={(index % 6) * 40}>
                 <button
                   type="button"
-                  className="group relative block w-full cursor-pointer overflow-hidden"
+                  className="pressable group relative block w-full cursor-pointer overflow-hidden"
                   onClick={() => setLightboxIndex(index)}
                 >
                   <PhotoImage
                     src={photo.src}
                     alt={photo.title || 'Photo'}
                     wrapperClassName="w-full"
-                    className="block w-full transition-transform duration-200 group-hover:scale-[1.01]"
+                    className="block w-full transition-transform duration-500 ease-out-strong motion-reduce:transition-none group-hover-zoom"
                   />
-                  <div className="absolute inset-0 flex items-end bg-black/0 p-4 transition-colors duration-200 group-hover:bg-black/30">
-                    <span className="text-sm font-bold text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-end bg-black/0 p-4 transition-[background-color] duration-250 ease-out-strong group-hover-dim">
+                    <span className="text-sm font-bold text-white opacity-0 transition-opacity duration-250 ease-out-strong group-hover-fade-in">
                       {photo.title}
                     </span>
                   </div>

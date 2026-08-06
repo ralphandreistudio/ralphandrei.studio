@@ -49,7 +49,7 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
         <button
           type="button"
           onClick={handleLogoClick}
-          className="text-left text-brand-black lowercase"
+          className="pressable text-left text-brand-black lowercase"
         >
           <span className="font-normal">studio </span>
           <span className="font-bold">ralph andrei</span>
@@ -59,17 +59,14 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
           {navItems.map((item) => (
             <li key={item.label}>
               {item.type === 'link' ? (
-                <Link
-                  to={item.href}
-                  className="transition-opacity hover:opacity-60"
-                >
+                <Link to={item.href} className="hover-fine-opacity">
                   {item.label}
                 </Link>
               ) : (
                 <button
                   type="button"
                   onClick={() => handleScrollClick(item.id)}
-                  className="transition-opacity hover:opacity-60"
+                  className="hover-fine-opacity"
                 >
                   {item.label}
                 </button>
@@ -80,68 +77,70 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
 
         <button
           type="button"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="pressable flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span
-            className={`block h-px w-6 bg-brand-black transition-transform duration-200 ${
+            className={`block h-px w-6 bg-brand-black transition-transform duration-200 ease-out-strong ${
               menuOpen ? 'translate-y-[7px] rotate-45' : ''
             }`}
           />
           <span
-            className={`block h-px w-6 bg-brand-black transition-opacity duration-200 ${
+            className={`block h-px w-6 bg-brand-black transition-opacity duration-200 ease-out-strong ${
               menuOpen ? 'opacity-0' : ''
             }`}
           />
           <span
-            className={`block h-px w-6 bg-brand-black transition-transform duration-200 ${
+            className={`block h-px w-6 bg-brand-black transition-transform duration-200 ease-out-strong ${
               menuOpen ? '-translate-y-[7px] -rotate-45' : ''
             }`}
           />
         </button>
       </div>
 
-      {menuOpen && (
-        <>
-          <button
-            type="button"
-            className="fixed inset-0 top-[73px] z-30 bg-black/20 md:hidden"
-            aria-label="Close menu"
-            onClick={() => setMenuOpen(false)}
-          />
-          <div
-            id="mobile-nav"
-            className="absolute left-0 right-0 top-full z-40 border-b border-[#e5e5e5] bg-white md:hidden"
-          >
-            <ul className="flex flex-col gap-1 px-6 py-4 text-lg lowercase text-brand-black">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  {item.type === 'link' ? (
-                    <Link
-                      to={item.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="block w-full py-3 transition-opacity hover:opacity-60"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => handleScrollClick(item.id)}
-                      className="block w-full py-3 text-left transition-opacity hover:opacity-60"
-                    >
-                      {item.label}
-                    </button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      )}
+      <button
+        type="button"
+        className="mobile-nav-backdrop fixed inset-0 top-[73px] z-30 bg-black/20 md:hidden"
+        data-open={menuOpen}
+        aria-label="Close menu"
+        aria-hidden={!menuOpen}
+        tabIndex={menuOpen ? 0 : -1}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      <div
+        id="mobile-nav"
+        className="mobile-nav-panel absolute left-0 right-0 top-full z-40 border-b border-[#e5e5e5] bg-white md:hidden"
+        data-open={menuOpen}
+        aria-hidden={!menuOpen}
+      >
+        <ul className="flex flex-col gap-1 px-6 py-4 text-lg lowercase text-brand-black">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              {item.type === 'link' ? (
+                <Link
+                  to={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="pressable block w-full py-3 hover-fine-opacity"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => handleScrollClick(item.id)}
+                  className="pressable block w-full py-3 text-left hover-fine-opacity"
+                >
+                  {item.label}
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   )
 }

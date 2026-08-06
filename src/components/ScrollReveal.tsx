@@ -3,15 +3,32 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 interface ScrollRevealProps {
   children: ReactNode
   className?: string
+  variant?: 'fade' | 'clip'
+  delay?: number
 }
 
-export default function ScrollReveal({ children, className = '' }: ScrollRevealProps) {
+function isInViewport(el: Element) {
+  const rect = el.getBoundingClientRect()
+  return rect.top < window.innerHeight && rect.bottom > 0
+}
+
+export default function ScrollReveal({
+  children,
+  className = '',
+  variant = 'fade',
+  delay = 0,
+}: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    if (isInViewport(el)) {
+      setVisible(true)
+      return
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -20,19 +37,28 @@ export default function ScrollReveal({ children, className = '' }: ScrollRevealP
           observer.disconnect()
         }
       },
-      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' },
+      { threshold: 0.01, rootMargin: '0px 0px -24px 0px' },
     )
 
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
 
+  const fadeClasses = visible
+    ? 'translate-y-0 opacity-100'
+    : 'translate-y-2 opacity-0'
+
+  const clipClasses = visible ? 'clip-revealed' : 'clip-hidden'
+
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
+      className={`${
+        variant === 'clip'
+          ? `clip-reveal overflow-hidden ${clipClasses}`
+          : `transition-[transform,opacity] duration-500 ease-out-strong motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${fadeClasses}`
       } ${className}`}
+      style={delay > 0 ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
     </div>
