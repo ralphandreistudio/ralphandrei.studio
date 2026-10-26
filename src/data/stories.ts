@@ -17,6 +17,65 @@ export interface Story {
 
 export const stories: Story[] = [
   {
+    slug: 'summer-jam-showcase-philippine-qualifier-vol-3',
+    title: 'Nocturnal Dance Company Wins SJSC Philippine Qualifier Vol. 3',
+    date: 'October 24, 2026',
+    dateIso: '2026-10-24',
+    excerpt:
+      'Twenty-four crews took the stage at the UP Theater for the Summer Jam Showcase Competition Philippine Qualifier Vol. 3, presented by BAWZ. Nocturnal Dance Company claimed the championship, with Autonomicass Crew and Foot Forward as runners-up.',
+    cover: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/poster.jpg',
+    photos: [
+      { src: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/1.jpg', alt: 'Summer Jam Showcase Competition Philippine Qualifier Vol. 3 on the UP Theater stage screen' },
+      { src: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/2.jpg', alt: 'A crew performs a dramatic scene with a chair onstage' },
+      { src: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/3.jpg', alt: 'Dancers perform a theatrical lift in white and red costumes' },
+      { src: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/4.jpg', alt: 'A dance crew performs around a wooden bed prop' },
+      { src: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/5.jpg', alt: 'A dramatic dance performance under blue stage lights' },
+      { src: '/stories/summer-jam-showcase-philippine-qualifier-vol-3/6.jpg', alt: 'A dance crew performs beneath blue spotlights' },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          'On October 24, 2026, the UP Theater hosted the Summer Jam Showcase Competition Philippine Qualifier Vol. 3, presented by BAWZ. Twenty-four crews took the stage in a night-long competition, and Nocturnal Dance Company walked away with the championship. Autonomicass Crew placed first runner-up, and Foot Forward placed second runner-up.',
+        ],
+      },
+      {
+        heading: 'The Lineup',
+        paragraphs: [
+          'Twenty-four teams were on the program, performing in this order: Mendez Dance Company, Femme MNL, Foot Forward, Komplex, CLA, Psycho, Chronophile, League of Monsters, Thy Kingdom, D’Chimpz, Nocturnal Dance Company, Legit Status, Oxycrew, Priderise, And Friends, Bon Appetit, Unistarz, Beyond the Box, Incognito, Street Crew 04, Ex-Mob, Nomads, Euphrosyne, and Autonomicass Crew.',
+          'Teams registered and blocked onstage in three batches of eight through the morning and early afternoon. Each crew got a 10-minute blocking slot, and the competition itself ran on 5-minute sets.',
+        ],
+      },
+      {
+        heading: 'The Night',
+        paragraphs: [
+          'The house opened at 5:30 PM, followed by a final round of reminders, a sponsor loop, and a countdown. The program began at 6:30 PM with the national anthem and an opening prayer, then the hosts’ opening remarks and the introduction of the judging criteria. Mendez Dance Company opened the competition, and the crews performed back to back.',
+          'Halfway through, a 20-minute break gave room for a sponsor segment and a raffle, along with promotions for BAWZ merch, workshops, and the concessionaires on site. The second half picked up with Oxycrew and ran through to Autonomicass Crew.',
+        ],
+      },
+      {
+        heading: 'After the Competition',
+        paragraphs: [
+          'With the competition done, the show turned to performances from Ashvinder Singh, Afrodite, Nica Santos, Nick Joseph, and Adrian Vendiola. BAWZ followed with an exhibition. The hosts also promoted what comes next for the community, including the SJSC Vol. 3 workshops, Summer Jam Dance Camp, BAWZ Intensives, and DanceXhibit. The weekend continued at BAWZ Complex on October 25.',
+          'Closing remarks came from Coach Ae and XT, and the night ended with the awarding ceremony.',
+        ],
+      },
+      {
+        heading: 'Behind the Show',
+        paragraphs: [
+          'A production like this starts long before the doors open. Ingress for lights, sound, the LED wall, the generator set, the tech booth, and the judges’ table began at midnight, and production staff and manpower were called in at 6:00 AM. The day also included a tech run for music, AVPs, lights, and host spiels, plus a company call and production photo before the house opened. Egress ran into the night after the show.',
+        ],
+      },
+      {
+        heading: 'About the Qualifier',
+        paragraphs: [
+          'The Summer Jam Showcase Competition Philippine Qualifier is hosted by BAWZ, the Quezon City dance collective founded in 2019 and led by Aennon Tabungar. It connects the Philippine scene to the Summer Jam Showcase Competition in Da Nang, Vietnam, run by Recognize Studios. BAWZ itself won that title in March 2024, and in 2026 Power Impact Dancers brought the championship to the Philippines. Vol. 3 continues the qualifier’s job of giving Filipino crews a stage at home and a route abroad.',
+        ],
+      },
+    ],
+    credit:
+      'Studio Ralph Andrei covered SJSC Philippine Qualifier Vol. 3 at the UP Theater, Quezon City.',
+  },
+  {
     slug: 'bawz-stage-vol-4',
     title: 'BAWZ STAGE VOL. 4: Dancing for a Seat on the World Stage',
     date: 'July 25, 2026',
