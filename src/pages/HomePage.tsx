@@ -183,10 +183,10 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/65 via-transparent to-black/25" aria-hidden="true" />
 
         <div className="relative z-10 w-full">
-          <p className="hero-in mb-7 text-[11px] font-medium uppercase tracking-[0.24em] text-white/75">
-            photographer · metro manila
+          <p className="hero-in mb-4 text-[11px] font-medium uppercase tracking-[0.24em] text-white/75">
+            metro manila
           </p>
-          <h1 className="text-[clamp(3.5rem,9vw,8.5rem)] font-extrabold lowercase leading-[0.88] tracking-[-0.075em]">
+          <h1 className="text-[clamp(3.5rem,9vw,8.5rem)] font-extrabold lowercase leading-[0.88] tracking-[-0.04em]">
             <span className="hero-in block">every frame</span>
             <span className="hero-in hero-in-delay-1 block">tells a story</span>
           </h1>
