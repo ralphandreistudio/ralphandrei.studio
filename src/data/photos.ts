@@ -36,7 +36,7 @@ const categoryDefs = [
     name: 'Graduations',
     description: 'Ceremony photos with weight',
     coverAspect: '4/5' as const,
-    coverPosition: 'top' as const,
+    coverPosition: 'slightly-up' as const,
   },
   {
     slug: 'bts',
@@ -64,7 +64,7 @@ const categoryDefs = [
     name: 'Real Estate',
     description: 'Interior, exterior, lifestyle',
     coverAspect: '4/5' as const,
-    coverPosition: 'top' as const,
+    coverPosition: 'slightly-right' as const,
   },
   {
     slug: 'kids',

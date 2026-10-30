@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -21,9 +21,42 @@ const coverAspectClass = {
 
 const coverPositionClass = {
   top: 'object-top',
+  'slightly-up': 'object-[center_80%]',
+  'slightly-right': 'object-[95%_top]',
   center: 'object-center',
   bottom: 'object-bottom',
 } as const
+
+const heroPhotos = [
+  {
+    src: '/photos/events/01.JPG',
+    alt: 'Performers onstage at a live event',
+  },
+  {
+    src: '/photos/events/11.jpg',
+    alt: 'Guests gathered beneath a canopy at a celebration',
+  },
+  {
+    src: '/photos/celebrations/00A-EMB-03100.JPG',
+    alt: 'A group portrait at an intimate celebration',
+  },
+  {
+    src: '/photos/graduations/00E-RAM03954.JPG',
+    alt: 'Graduates celebrating together outdoors',
+  },
+  {
+    src: '/hero/auditorium-crop.jpg',
+    alt: 'An empty auditorium prepared for commencement',
+  },
+  {
+    src: '/photos/dance/00E-RAM07272.JPG',
+    alt: 'Dance competition winners celebrating onstage',
+  },
+  {
+    src: '/photos/bts/09.jpg',
+    alt: 'A collection of editorial magazine cover photographs',
+  },
+]
 
 function CategoryCard({
   slug,
@@ -34,7 +67,7 @@ function CategoryCard({
   slug: string
   name: string
   coverAspect?: '4/3' | '4/5'
-  coverPosition?: 'top' | 'center' | 'bottom'
+  coverPosition?: 'top' | 'slightly-up' | 'slightly-right' | 'center' | 'bottom'
 }) {
   const [coverMissing, setCoverMissing] = useState(false)
 
@@ -66,6 +99,49 @@ function CategoryCard({
 
 export default function HomePage() {
   const location = useLocation()
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0)
+  const [outgoingPhotoIndex, setOutgoingPhotoIndex] = useState<number | null>(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
+  const transitionTimeoutRef = useRef<number | null>(null)
+  const activePhoto = heroPhotos[activePhotoIndex]
+
+  const showPhoto = useCallback((direction: number) => {
+    const nextIndex = (activePhotoIndex + direction + heroPhotos.length) % heroPhotos.length
+    setOutgoingPhotoIndex(activePhotoIndex)
+    setActivePhotoIndex(nextIndex)
+
+    if (transitionTimeoutRef.current !== null) {
+      window.clearTimeout(transitionTimeoutRef.current)
+    }
+    transitionTimeoutRef.current = window.setTimeout(() => {
+      setOutgoingPhotoIndex(null)
+      transitionTimeoutRef.current = null
+    }, 1150)
+  }, [activePhotoIndex])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updateMotionPreference = () => setPrefersReducedMotion(mediaQuery.matches)
+    mediaQuery.addEventListener('change', updateMotionPreference)
+    return () => mediaQuery.removeEventListener('change', updateMotionPreference)
+  }, [])
+
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion) return
+    const interval = window.setInterval(() => {
+      if (document.visibilityState === 'visible') showPhoto(1)
+    }, 6500)
+    return () => window.clearInterval(interval)
+  }, [isPaused, prefersReducedMotion, showPhoto])
+
+  useEffect(() => () => {
+    if (transitionTimeoutRef.current !== null) {
+      window.clearTimeout(transitionTimeoutRef.current)
+    }
+  }, [])
 
   usePageMeta(DEFAULT_PAGE_META)
 
@@ -82,30 +158,68 @@ export default function HomePage() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }, [])
 
-  const scrollToWork = useCallback(() => {
-    scrollToSection('work')
-  }, [scrollToSection])
-
   return (
     <div className="min-h-screen bg-white">
-      <Navbar onScrollTo={scrollToSection} />
+      <Navbar onScrollTo={scrollToSection} overlay />
 
       {/* Hero */}
-      <section className="flex min-h-screen flex-col justify-center px-6 pt-24 md:px-10 lg:px-16">
-        <h1 className="text-[clamp(3rem,8vw,7rem)] font-extrabold lowercase leading-[1.05] text-brand-black">
-          <span className="hero-in block">every frame</span>
-          <span className="hero-in hero-in-delay-1 block">tells a story</span>
-        </h1>
-        <p className="hero-in hero-in-delay-2 mt-8 max-w-3xl text-xs uppercase tracking-[0.2em] text-brand-gray">
-          {categories.map((c) => c.name.toLowerCase()).join(' · ')}
-        </p>
-        <button
-          type="button"
-          onClick={scrollToWork}
-          className="hero-in hero-in-delay-3 pressable mt-10 w-fit text-sm lowercase text-brand-black hover-fine-opacity"
+      <section id="home-hero" className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-black px-6 pb-12 pt-32 text-white md:px-10 md:pb-16 lg:px-16">
+        <img
+          key={`outgoing-${outgoingPhotoIndex}`}
+          src={outgoingPhotoIndex === null ? undefined : heroPhotos[outgoingPhotoIndex].src}
+          alt=""
+          aria-hidden="true"
+          className={`hero-photo-exit absolute inset-0 -z-20 h-full w-full object-cover object-center ${outgoingPhotoIndex === null ? 'hidden' : ''}`}
+        />
+        <img
+          key={activePhoto.src}
+          src={activePhoto.src}
+          alt={activePhoto.alt}
+          className={`hero-photo-enter absolute inset-0 -z-20 h-full w-full object-cover object-center ${prefersReducedMotion ? 'motion-reduce:animate-none' : ''}`}
+          fetchPriority={activePhotoIndex === 0 ? 'high' : 'auto'}
+          decoding="async"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/75 via-black/35 to-black/10" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/65 via-transparent to-black/25" aria-hidden="true" />
+
+        <div className="relative z-10 w-full">
+          <p className="hero-in mb-7 text-[11px] font-medium uppercase tracking-[0.24em] text-white/75">
+            photographer · metro manila
+          </p>
+          <h1 className="text-[clamp(3.5rem,9vw,8.5rem)] font-extrabold lowercase leading-[0.88] tracking-[-0.075em]">
+            <span className="hero-in block">every frame</span>
+            <span className="hero-in hero-in-delay-1 block">tells a story</span>
+          </h1>
+          <p className="hero-in hero-in-delay-2 mt-8 max-w-md text-sm leading-7 text-white/80 md:text-base">
+            Honest images of people, places, and the moments that bring them together.
+          </p>
+        </div>
+        <div
+          className="absolute bottom-5 right-5 z-10 flex items-center gap-2 md:bottom-7 md:right-10 lg:right-16"
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+              setIsPaused(false)
+            }
+          }}
         >
-          view work ↓
-        </button>
+          <button
+            type="button"
+            onClick={() => showPhoto(-1)}
+            aria-label="Previous featured photo"
+            className="pressable inline-flex h-11 w-11 items-center justify-center border border-white/60 text-lg text-white hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => showPhoto(1)}
+            aria-label="Next featured photo"
+            className="pressable inline-flex h-11 w-11 items-center justify-center border border-white/60 text-lg text-white hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
       </section>
 
       {/* Work */}
@@ -141,18 +255,16 @@ export default function HomePage() {
           </h2>
           <div className="space-y-6 text-brand-gray lowercase">
             <p>
-              for nearly eight years, i have honed my craft as a self-taught
-              photographer—learning through shoots, mistakes, and the quiet
-              discipline of showing up with a camera. every assignment sharpens
-              the eye; every frame is a chance to see something true.
+              i’ve been shooting for nearly eight years, mostly self-taught. i
+              learned through shoots, mistakes, and the habit of showing up with
+              a camera. every assignment sharpens my eye a little more.
             </p>
             <p>
-              the studio covers events, portraits, intimate
-              celebrations, graduations, kids and family, dance competitions,
-              sports and action, real estate, and behind-the-scenes across metro
-              manila. whether it is a gala, a lookbook, or a championship
-              moment, the goal is the same: honest imagery that holds the weight
-              of the day.
+              the studio covers events, portraits, intimate celebrations,
+              graduations, kids and family, dance competitions, sports and
+              action, real estate, and behind-the-scenes across metro manila.
+              whether it’s a gala, a lookbook, or a championship moment, the goal
+              is the same: honest images that hold the weight of the day.
             </p>
           </div>
         </ScrollReveal>

@@ -25,6 +25,49 @@
 }
 
 @layer components {
+  @keyframes nav-drop {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-photo-enter {
+    from {
+      opacity: 0;
+      transform: scale(1.015);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes hero-photo-exit {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.01);
+    }
+  }
+
+  .hero-photo-enter {
+    animation: hero-photo-enter 1100ms var(--ease-out) both;
+  }
+
+  .hero-photo-exit {
+    animation: hero-photo-exit 1100ms var(--ease-out) both;
+  }
+
+  .animate-nav-drop {
+    animation: nav-drop 320ms var(--ease-out) both;
+  }
+
   .pressable {
     transition: transform 160ms var(--ease-out);
   }
@@ -34,6 +77,21 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero-photo-enter {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .hero-photo-exit {
+      animation: none;
+      opacity: 0;
+    }
+
+    .animate-nav-drop {
+      animation: none;
+    }
+
     .pressable:active {
       transform: none;
     }

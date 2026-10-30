@@ -82,6 +82,18 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
   ],
   "celebrations": [
     {
+      "id": "celebrations-00A-EMB-03100",
+      "src": "/photos/celebrations/00A-EMB-03100.JPG"
+    },
+    {
+      "id": "celebrations-00B-EMB-02887",
+      "src": "/photos/celebrations/00B-EMB-02887.JPG"
+    },
+    {
+      "id": "celebrations-00C-EMB-02826",
+      "src": "/photos/celebrations/00C-EMB-02826.JPG"
+    },
+    {
       "id": "celebrations-01",
       "src": "/photos/celebrations/01.JPG"
     },
@@ -94,18 +106,6 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
       "src": "/photos/celebrations/03.JPG"
     },
     {
-      "id": "celebrations-04",
-      "src": "/photos/celebrations/04.JPG"
-    },
-    {
-      "id": "celebrations-05",
-      "src": "/photos/celebrations/05.JPG"
-    },
-    {
-      "id": "celebrations-06",
-      "src": "/photos/celebrations/06.JPG"
-    },
-    {
       "id": "celebrations-07",
       "src": "/photos/celebrations/07.JPG"
     },
@@ -116,18 +116,6 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
     {
       "id": "celebrations-09",
       "src": "/photos/celebrations/09.JPG"
-    },
-    {
-      "id": "celebrations-10",
-      "src": "/photos/celebrations/10.jpg"
-    },
-    {
-      "id": "celebrations-11",
-      "src": "/photos/celebrations/11.jpg"
-    },
-    {
-      "id": "celebrations-12",
-      "src": "/photos/celebrations/12.jpg"
     },
     {
       "id": "celebrations-13",
@@ -155,6 +143,30 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
     }
   ],
   "dance": [
+    {
+      "id": "dance-00A-RAM06801",
+      "src": "/photos/dance/00A-RAM06801.JPG"
+    },
+    {
+      "id": "dance-00B-RAM06950",
+      "src": "/photos/dance/00B-RAM06950.JPG"
+    },
+    {
+      "id": "dance-00C-RAM06857",
+      "src": "/photos/dance/00C-RAM06857.JPG"
+    },
+    {
+      "id": "dance-00D-RAM06996",
+      "src": "/photos/dance/00D-RAM06996.JPG"
+    },
+    {
+      "id": "dance-00E-RAM07272",
+      "src": "/photos/dance/00E-RAM07272.JPG"
+    },
+    {
+      "id": "dance-00F-RAM06978",
+      "src": "/photos/dance/00F-RAM06978.JPG"
+    },
     {
       "id": "dance-01",
       "src": "/photos/dance/01.JPG"
@@ -316,6 +328,42 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
   ],
   "graduations": [
     {
+      "id": "graduations-00A-RAM08964",
+      "src": "/photos/graduations/00A-RAM08964.JPG"
+    },
+    {
+      "id": "graduations-00B-RAM09803",
+      "src": "/photos/graduations/00B-RAM09803.JPG"
+    },
+    {
+      "id": "graduations-00C-RAM09218",
+      "src": "/photos/graduations/00C-RAM09218.JPG"
+    },
+    {
+      "id": "graduations-00D-RAM03246",
+      "src": "/photos/graduations/00D-RAM03246.JPG"
+    },
+    {
+      "id": "graduations-00E-RAM03954",
+      "src": "/photos/graduations/00E-RAM03954.JPG"
+    },
+    {
+      "id": "graduations-00F-RAM04057",
+      "src": "/photos/graduations/00F-RAM04057.JPG"
+    },
+    {
+      "id": "graduations-00G-campus-portrait-01",
+      "src": "/photos/graduations/00G-campus-portrait-01.png"
+    },
+    {
+      "id": "graduations-00H-campus-portrait-02",
+      "src": "/photos/graduations/00H-campus-portrait-02.png"
+    },
+    {
+      "id": "graduations-00I-campus-portrait-03",
+      "src": "/photos/graduations/00I-campus-portrait-03.png"
+    },
+    {
       "id": "graduations-01",
       "src": "/photos/graduations/01.JPG"
     },
@@ -352,16 +400,16 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
       "src": "/photos/graduations/09.JPG"
     },
     {
-      "id": "graduations-10",
-      "src": "/photos/graduations/10.JPG"
+      "id": "graduations-09A-feu-diploma",
+      "src": "/photos/graduations/09A-feu-diploma.png"
     },
     {
-      "id": "graduations-11",
-      "src": "/photos/graduations/11.JPG"
+      "id": "graduations-09B-auditorium",
+      "src": "/photos/graduations/09B-auditorium.png"
     },
     {
-      "id": "graduations-12",
-      "src": "/photos/graduations/12.JPG"
+      "id": "graduations-09C-university-seal",
+      "src": "/photos/graduations/09C-university-seal.png"
     },
     {
       "id": "graduations-13",
@@ -575,6 +623,30 @@ export const galleryBySlug: Record<string, GalleryEntry[]> = {
     }
   ],
   "sports": [
+    {
+      "id": "sports-00A-RAM04061",
+      "src": "/photos/sports/00A-RAM04061.JPG"
+    },
+    {
+      "id": "sports-00B-RAM04128",
+      "src": "/photos/sports/00B-RAM04128.JPG"
+    },
+    {
+      "id": "sports-00C-RAM04494",
+      "src": "/photos/sports/00C-RAM04494.JPG"
+    },
+    {
+      "id": "sports-00D-RAM04594",
+      "src": "/photos/sports/00D-RAM04594.JPG"
+    },
+    {
+      "id": "sports-00E-RAM04626",
+      "src": "/photos/sports/00E-RAM04626.JPG"
+    },
+    {
+      "id": "sports-00F-RAM04189",
+      "src": "/photos/sports/00F-RAM04189.JPG"
+    },
     {
       "id": "sports-01",
       "src": "/photos/sports/01.jpg"

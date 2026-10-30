@@ -69,27 +69,32 @@ export default function CategoryPage() {
           </p>
         ) : (
           <div className="grid grid-cols-1 items-center gap-1 md:grid-cols-2 lg:grid-cols-3">
-            {photos.map((photo, index) => (
-              <ScrollReveal key={photo.id} delay={(index % 6) * 40}>
-                <button
-                  type="button"
-                  className="pressable group relative block w-full cursor-pointer overflow-hidden"
-                  onClick={() => setLightboxIndex(index)}
-                >
-                  <PhotoImage
-                    src={photo.src}
-                    alt={photo.title || 'Photo'}
-                    wrapperClassName="w-full"
-                    className="block w-full transition-transform duration-500 ease-out-strong motion-reduce:transition-none group-hover-zoom"
-                  />
+            {photos.map((photo, index) => {
+              const isDanceFirstRow = category.slug === 'dance' && index < 3
+              const isDanceRightPhoto = category.slug === 'dance' && index === 2
+
+              return (
+                <ScrollReveal key={photo.id} delay={(index % 6) * 40}>
+                  <button
+                    type="button"
+                    className="pressable group relative block w-full cursor-pointer overflow-hidden"
+                    onClick={() => setLightboxIndex(index)}
+                  >
+                    <PhotoImage
+                      src={photo.src}
+                      alt={photo.title || 'Photo'}
+                      wrapperClassName={`w-full ${isDanceFirstRow ? 'aspect-[4/5]' : ''}`}
+                      className={`block w-full transition-transform duration-500 ease-out-strong motion-reduce:transition-none group-hover-zoom ${isDanceFirstRow ? 'h-full object-cover' : ''} ${isDanceRightPhoto ? 'object-bottom' : ''}`}
+                    />
                   <div className="absolute inset-0 flex items-end bg-black/0 p-4 transition-[background-color] duration-250 ease-out-strong group-hover-dim">
                     <span className="text-sm font-bold text-white opacity-0 transition-opacity duration-250 ease-out-strong group-hover-fade-in">
                       {photo.title}
                     </span>
                   </div>
-                </button>
-              </ScrollReveal>
-            ))}
+                  </button>
+                </ScrollReveal>
+              )
+            })}
           </div>
         )}
       </main>

@@ -20,6 +20,6 @@ export interface Category {
   /** Home grid tile ratio — use 4/5 for portrait covers */
   coverAspect?: '4/3' | '4/5'
   /** Which part of the cover stays visible when cropping (default: center) */
-  coverPosition?: 'top' | 'center' | 'bottom'
+  coverPosition?: 'top' | 'slightly-up' | 'slightly-right' | 'center' | 'bottom'
   photos: Photo[]
 }
