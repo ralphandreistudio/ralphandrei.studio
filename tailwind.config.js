@@ -7,10 +7,12 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       colors: {
+        surface: 'var(--surface)',
+        'brand-border': 'var(--brand-border)',
         brand: {
-          black: '#1a1a1a',
-          gray: '#6b6b6b',
-          light: '#f0f0f0',
+          black: 'var(--brand-black)',
+          gray: 'var(--brand-gray)',
+          light: 'var(--brand-light)',
         },
       },
       transitionTimingFunction: {

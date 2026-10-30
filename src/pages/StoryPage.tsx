@@ -31,7 +31,7 @@ export default function StoryPage() {
 
   if (!story) {
     return (
-      <div className="flex min-h-screen flex-col bg-white">
+      <div className="flex min-h-screen flex-col bg-surface">
         <Navbar />
         <div className="flex flex-1 items-center justify-center px-6 pt-24">
           <p className="text-brand-gray">Not found</p>
@@ -42,7 +42,7 @@ export default function StoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <Navbar />
 
       {/* Article header */}
@@ -95,7 +95,7 @@ export default function StoryPage() {
 
         {story.credit && (
           <ScrollReveal>
-            <p className="mt-4 border-t border-[#e5e5e5] pt-8 text-xs italic text-brand-gray">
+            <p className="mt-4 border-t border-brand-border pt-8 text-xs italic text-brand-gray">
               {story.credit}
             </p>
           </ScrollReveal>
@@ -104,7 +104,7 @@ export default function StoryPage() {
 
       {/* Featured photos */}
       {story.photos.length > 0 && (
-        <section className="border-t border-[#e5e5e5] px-6 pb-24 pt-16 md:px-10 lg:px-16">
+        <section className="border-t border-brand-border px-6 pb-24 pt-16 md:px-10 lg:px-16">
           <ScrollReveal>
             <p className="mb-10 text-xs uppercase tracking-[0.2em] text-brand-gray">
               Photos from the Event

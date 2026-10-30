@@ -14,7 +14,7 @@ export default function StoriesPage() {
   })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <Navbar />
 
       <header className="px-6 pt-28 pb-12 md:px-10 lg:px-16">
@@ -40,12 +40,12 @@ export default function StoriesPage() {
             No stories yet — check back soon.
           </p>
         ) : (
-          <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-px bg-brand-border md:grid-cols-2 lg:grid-cols-3">
             {stories.map((story, index) => (
               <ScrollReveal key={story.slug} className="h-full" delay={index * 60}>
                 <Link
                   to={`/stories/${story.slug}`}
-                  className="group flex h-full flex-col bg-white"
+                  className="group flex h-full flex-col bg-surface"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-brand-light">
                     <img

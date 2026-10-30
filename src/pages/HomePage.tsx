@@ -12,6 +12,8 @@ import {
   PhoneIcon,
 } from '../components/ContactIcons'
 import CategoryCoverImage from '../components/CategoryCoverImage'
+import CountUp from '../components/CountUp'
+import ScrambleText from '../components/ScrambleText'
 import { categories } from '../data/photos'
 
 const coverAspectClass = {
@@ -159,7 +161,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <Navbar onScrollTo={scrollToSection} overlay />
 
       {/* Hero */}
@@ -229,7 +231,7 @@ export default function HomePage() {
             selected work
           </p>
         </ScrollReveal>
-        <div className="grid grid-cols-1 gap-px bg-[#e5e5e5] md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-px bg-brand-border md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category, index) => (
             <ScrollReveal key={category.slug} className="h-full" delay={index * 50}>
               <CategoryCard
@@ -244,7 +246,7 @@ export default function HomePage() {
       </section>
 
       {/* About */}
-      <section id="about" className="scroll-mt-20 border-t border-[#e5e5e5] px-6 py-24 md:px-10 lg:px-16">
+      <section id="about" className="scroll-mt-20 border-t border-brand-border px-6 py-24 md:px-10 lg:px-16">
         <ScrollReveal className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <h2 className="text-3xl font-extrabold lowercase leading-snug text-brand-black md:text-4xl lg:text-5xl">
             nearly eight years.
@@ -269,30 +271,39 @@ export default function HomePage() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal className="mt-20 grid grid-cols-1 gap-12 border-t border-[#e5e5e5] pt-16 sm:grid-cols-3">
+        <ScrollReveal className="mt-20 grid grid-cols-1 gap-12 border-t border-brand-border pt-16 sm:grid-cols-3">
           <div>
-            <p className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl">
-              8+
-            </p>
+            <CountUp
+              from={0}
+              to={8}
+              suffix="+"
+              duration={3}
+              mode="count"
+              easing="easeOut"
+              trigger="view"
+              className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl"
+            />
             <p className="mt-2 text-sm lowercase text-brand-gray">years active</p>
           </div>
           <div>
-            <p className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl">
-              Sony αlpha
-            </p>
+            <ScrambleText
+              text="Sony αlpha"
+              className="block text-3xl font-extrabold lowercase text-brand-black md:text-4xl"
+            />
             <p className="mt-2 text-sm lowercase text-brand-gray">primary system</p>
           </div>
           <div>
-            <p className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl">
-              metro manila
-            </p>
+            <ScrambleText
+              text="metro manila"
+              className="block text-3xl font-extrabold lowercase text-brand-black md:text-4xl"
+            />
             <p className="mt-2 text-sm lowercase text-brand-gray">based in</p>
           </div>
         </ScrollReveal>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="scroll-mt-20 border-t border-[#e5e5e5] px-6 py-24 md:px-10 lg:px-16">
+      <section id="contact" className="scroll-mt-20 border-t border-brand-border px-6 py-24 md:px-10 lg:px-16">
         <ScrollReveal className="grid gap-16 lg:grid-cols-2">
           <div>
             <h2 className="text-3xl font-extrabold lowercase text-brand-black md:text-4xl">

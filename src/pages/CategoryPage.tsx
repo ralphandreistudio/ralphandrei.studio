@@ -29,7 +29,7 @@ export default function CategoryPage() {
 
   if (!category) {
     return (
-      <div className="flex min-h-screen flex-col bg-white">
+      <div className="flex min-h-screen flex-col bg-surface">
         <Navbar />
         <div className="flex flex-1 items-center justify-center px-6 pt-24">
           <p className="lowercase text-brand-gray">not found</p>
@@ -42,7 +42,7 @@ export default function CategoryPage() {
   const { photos } = category
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <Navbar />
 
       <header className="scroll-mt-24 px-6 pt-28 pb-12 md:px-10 lg:px-16">
