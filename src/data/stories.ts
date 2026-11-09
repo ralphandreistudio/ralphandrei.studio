@@ -10,12 +10,80 @@ export interface Story {
   dateIso: string
   excerpt: string
   cover: string
+  coverAlt?: string
   photos: { src: string; alt: string }[]
   sections: StorySection[]
   credit?: string
 }
 
 export const stories: Story[] = [
+  {
+    slug: 'devday-exchange-manila-2026',
+    title: 'OpenAI DevDay Exchange Manila Gathers Local Builders at AWS BGC',
+    date: 'November 6, 2026',
+    dateIso: '2026-11-06',
+    excerpt:
+      'Developers, tech enthusiasts, and founders gathered at the AWS Office in BGC for an evening of DevDay announcements, Codex workflows, project demos, and hands-on building.',
+    cover: '/stories/devday-exchange-manila-2026/poster.jpg',
+    coverAlt:
+      'Attendees pose for a group photo at DevDay Exchange Community: Manila.',
+    photos: [
+      {
+        src: '/stories/devday-exchange-manila-2026/1.jpg',
+        alt: 'Attendees listen to a DevDay presentation at the AWS Office in Bonifacio Global City.',
+      },
+      {
+        src: '/stories/devday-exchange-manila-2026/2.jpg',
+        alt: 'A speaker presents the DevDay Exchange Community event recap.',
+      },
+      {
+        src: '/stories/devday-exchange-manila-2026/3.jpg',
+        alt: 'A DevDay Exchange discussion prompt asks attendees which feature has been a game changer for them.',
+      },
+      {
+        src: '/stories/devday-exchange-manila-2026/4.jpg',
+        alt: 'DevDay Exchange Manila attendees pose beside an OpenAI banner.',
+      },
+      {
+        src: '/stories/devday-exchange-manila-2026/5.jpg',
+        alt: 'Guests share a meal and continue networking at DevDay Exchange Manila.',
+      },
+      {
+        src: '/stories/devday-exchange-manila-2026/6.jpg',
+        alt: 'Attendees fill the AWS Office event room while a DevDay Exchange presentation is underway.',
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          'On November 6, 2026, the AWS Office at Arthaland Century Pacific Tower in Bonifacio Global City hosted DevDay Exchange Community: Manila. Developers, tech enthusiasts, and founders spent the evening unpacking the latest OpenAI DevDay announcements, comparing notes on Codex workflows, and building together.',
+          'The event ran from 5:00 PM to 10:00 PM and was organized by David Marquez, CTO at Yield and the local OpenAI Codex Ambassador for Manila, in partnership with the OpenAI Codex Community.',
+        ],
+      },
+      {
+        heading: 'The Program',
+        paragraphs: [
+          'The evening moved through four parts: a walkthrough of the global DevDay announcements, a look at new Codex workflows and AI tools, project show-and-tells from local builders, and a mini-hackathon and build session. It gave the room time to take in what was new, then put it to work.',
+        ],
+      },
+      {
+        heading: 'The Night',
+        paragraphs: [
+          'Guests arrived at the AWS office in BGC from the early evening. The first part of the program focused on what came out of the global DevDay and what it means for developers building from Manila. From there, the room moved from listening to showing: builders demoed their own projects, and the mini-hackathon created space to work with the new tools hands-on.',
+          'Networking ran through the whole night, from conversations between sessions to shared tables and impromptu product discussions. The exchange carried on well beyond the formal program, with students, startup founders, and engineers comparing ideas, workflows, and the next things they wanted to make.',
+        ],
+      },
+      {
+        heading: 'Behind the Exchange',
+        paragraphs: [
+          'DevDay Exchange is a community format. Rather than waiting on recaps, local groups gather to go through the announcements together and try them out in the room. In Manila, the format fit a scene already full of student developers, startup founders, and independent engineers who build and ship on their own.',
+          'That was the spirit of the night: a local room for a global conversation, made useful by the people willing to turn ideas into working projects together.',
+        ],
+      },
+    ],
+    credit:
+      'Studio Ralph Andrei covered DevDay Exchange Community: Manila at the AWS Office, Bonifacio Global City.',
+  },
   {
     slug: 'summer-jam-showcase-philippine-qualifier-vol-3',
     title: 'Nocturnal Dance Company Wins SJSC Philippine Qualifier Vol. 3',

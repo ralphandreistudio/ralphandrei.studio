@@ -68,8 +68,9 @@ export default function StoryPage() {
         <div className="flex justify-center bg-brand-light px-6 md:px-10 lg:px-16">
           <img
             src={story.cover}
-            alt={story.title}
-            className="max-h-[90vh] w-auto object-contain"
+            alt={story.coverAlt ?? story.title}
+            decoding="async"
+            className="h-auto max-h-[90vh] max-w-full w-auto object-contain"
           />
         </div>
       </ScrollReveal>
@@ -116,6 +117,8 @@ export default function StoryPage() {
                 <img
                   src={photo.src}
                   alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full break-inside-avoid transition-transform duration-500 ease-out-strong motion-reduce:transition-none hover-fine-zoom"
                 />
               </ScrollReveal>
